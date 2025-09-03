@@ -81,12 +81,20 @@ namespace ChallengesWithTestsMark8
 
         public int Factorial(int number)
         {
-            int result = 1;
-            for (int i = 1; i <= number; i++)
+
+            if (number < 0)
             {
-                result *= i;
+                throw new ArgumentOutOfRangeException();
             }
-            return result;
+
+            // Factorial of 0 is 1 by definition
+            if (number == 0)
+            {
+                return 1;
+            }
+
+            // Generate 1..n sequence and multiply all numbers
+            return Enumerable.Range(1, number).Aggregate(1, (prod, next) => prod * next);
         }
     }
 }
